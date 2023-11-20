@@ -10,8 +10,7 @@
         width: 100%;
     }
 
-.banner_text { /* sets the position and formatting of the text which hovers over the 
-image banner */
+.banner_text { /* sets the position and formatting of the text which hovers over the image banner */
     position: relative;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -20,4 +19,21 @@ image banner */
     font-size: 3.5vw;
     font-weight: bold;
     text-align: center;
+}
+
+.about_container { /* sets the width and padding of the container */
+    width: 100%;
+    padding: 1px;
+}
+
+.left { /* these two split the container into to parts while also aligning text */
+    float: left;
+    width: 60%;
+    font-size: 1.3vw;
+}
+
+.right {
+    float: right;
+    width: 36%;
+    padding: 2%;
 }
