@@ -24,16 +24,7 @@
 .about_container { /* sets the width and padding of the container */
     width: 100%;
     padding: 1px;
-}
-
-.left { /* these two split the container into to parts while also aligning text */
-    float: left;
-    width: 60%;
     font-size: 1.3vw;
+    text-align: center;
 }
 
-.right {
-    float: right;
-    width: 36%;
-    padding: 2%;
-}

@@ -1,6 +1,7 @@
 ﻿@page
-@model             Pages.AboutModel
+@model AboutModel
 @{
+    ViewData["Title"] = "About";
 }
 
 <html>
@@ -19,29 +20,30 @@
     <!-- Creates a div that is referenced in CSS in order to display an image banner -->
 
     <div class="about_container">
-        <div class="left">
             <p>
-                Harrys Pizza is a restaurant that serves delicious pizza. The restaurant is located in Chester, Cheshire.
-                The restaurant has a cosy atmosphere and friendly staff. The menu offers a variety of pizza options, feel free to look at our menu which
-                can be viewed right here on our website! Come and enjoy a slice of pizza at Harrys Pizza! <br><br>
+                Harry’s Pizza is a local gem that has been serving up mouthwatering pizzas to the residents of Chester. 
+                With a passion for quality ingredients and authentic flavors, we've become a go-to spot for pizza 
+                enthusiasts.<br /><br />
 
-                What is Pizza? Pizza is a dish of Italian origin consisting of a usually round, flat base of leavened wheat-based dough topped with tomatoes, cheese,
-                and often various other ingredients (such as various types of sausage, anchovies, mushrooms, onions, olives, vegetables, meat, ham, etc.), which is then
-                baked at a high temperature.<br><br>
+                Here are some highlights about Harry’s Pizza:<br />
+                
+                1. Location: You can find Harry’s Pizza nestled in the heart of Chester, making it convenient for both 
+                locals and visitors. <br />
 
-                Harrys Pizza is a new pizza restaurant that has recently opened in the heart of the city. The restaurant is in a prime location and offers a wide range of pizzas to choose from.
-                The restaurant has a cosy and welcoming atmosphere that makes it perfect for families and friends to gather and enjoy a delicious meal together.
-                The restaurants menu features a variety of pizzas that are made with fresh ingredients and cooked to perfection.
-                Some of the most popular pizzas on the menu include the classic Margherita pizza, the spicy pepperoni pizza, and the vegetarian pizza. In addition to pizzas,
-                Harrys Pizza also offers a selection of salads, appetizers, and desserts. One of he unique features of Harrys Pizza is its commitment to using locally sourced ingredients whenever possible.
-                This not only ensures that the food is fresh and flavourful but also supports local farmers and businesses. The restaurant also
-                offers a range of drinks to complement your meal. Whether you’re in the mood for a cold beer or a glass of wine, Harrys Pizza has something for everyone.
-                Overall, Harrys Pizza is a great place to enjoy delicious pizza in a warm and welcoming environment. So why not stop by today and try one of our amazing pizzas for yourself?
+                2. Menu: Our menu boasts a variety of pizza options, from classic Margheritas to creative combinations. 
+                Whether you’re a fan of thin crust or deep-dish, there’s something for everyone. <br />
+
+                3. Quality Ingredients: At Harry’s Pizza we take pride in using fresh, high-quality ingredients. Each pizza is crafted with care, 
+                ensuring a delightful dining experience. <br />
+
+                4. Delivery Service: Need a pizza fix at home? No worries! Harry’s Pizza offers efficient delivery services, bringing piping-hot 
+                pizzas straight to your doorstep.<br />
+
+                5. Atmosphere: If you prefer dining in, their cozy restaurant provides a welcoming ambiance. Enjoy your pizza with friends and 
+                family in a relaxed setting. <br />
+
+                <br />Next time you’re craving a slice of cheesy goodness, consider giving Harry’s Pizza a try. Your taste buds will thank you! 🍕
             </p>
-        </div>
-        <div class="right">
-            <img src="~/images/about_cook.jpg" width=100% height=100%> <!-- Eat this, not that! (2020).https://www.eatthis.com/pizza-facts/ -->
-        </div>
     </div>
     <!-- This contains multiple divs which user inherritance in order to seperate the page into two halves so space is not wasted -->
     <iframe width=100% height="500px" src="https://www.youtube.com/embed/HxanfAyzXGk"></iframe>
