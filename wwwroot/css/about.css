@@ -1,30 +1,20 @@
-﻿.image_banner { /* sets the width and height of the image banner div */
-    width: 100%;
-    height: 20%;
-}
-
-    .image_banner img { /* set the alignment and size of the image within the div */
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-    }
-
-.banner_text { /* sets the position and formatting of the text which hovers over the image banner */
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: black;
-    background-color: darkgrey;
-    font-size: 3.5vw;
-    font-weight: bold;
-    text-align: center;
-}
+﻿
 
 .about_container { /* sets the width and padding of the container */
     width: 100%;
     padding: 1px;
     font-size: 1.3vw;
     text-align: center;
+}
+
+.slideshow {
+    max-width: 50%;
+    position: center;
+    margin: auto;
+    padding: 10px;
+}
+
+.myslides {
+    vertical-align: middle;
 }
 

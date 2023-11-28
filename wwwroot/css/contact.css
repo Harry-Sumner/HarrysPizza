@@ -1,0 +1,52 @@
+﻿.contact_container { /* sets the width and padding of the container */
+    width: 100%;
+    padding: 1px;
+    font-size: 1.5vw;
+}
+
+.form_container { /* these two split the container into to parts while also aligning text */
+    float: left;
+    width: 75%;
+}
+
+.right {
+    float: right;
+    width: 23%;
+    padding: 2%;
+}
+input[type=text], select { /* formats all text input types so it is spread accross the page and also adds border styles and text */
+    width: 100%;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] { /* formats the submit button so it has colour, spreads accross the whole page and also adds a cursor effect */
+    width: 100%;
+    background-color: darkgrey;
+    cursor: pointer;
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+label { /* formats the colour of the text in the label */
+    color: black;
+    font-weight: bold;
+}
+
+input[type=submit]:hover { /* changes colour of the button when the cursor hovers over */
+    background-color: grey;
+}
+
+.form { /* formats the form layout by adding padding and background colour */
+    border-radius: 10px;
+    background-color: lightgray;
+    padding: 10px;
+    width: 60%;
+    max-height: 100%;
+}
+
+textarea {
+    height: 100%;
+    width: 100%;
+}

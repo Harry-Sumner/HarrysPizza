@@ -1,11 +1,12 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
 <head>
     <link rel='stylesheet' href="~/css/index.css">
+    <link rel='stylesheet' href="~/css/site.css">
 </head>
 
 <body>
@@ -17,36 +18,5 @@
     </div>
     <!-- Creates a div that is referenced in CSS in order to display an image banner -->
 
-    <div class="slideshow" style="width:30%">
-        <img class="myslides" src="images/chicken.jpg" style="width:100%">  <!-- Papas Pizza Barton (n.d). https://www.papaspizzabarton.com/ -->
-        <img class="myslides" src="images/chicken_pasta.jpg" style="width:100%"> <!-- Salt and Lavender (2019). https://www.saltandlavender.com/creamy-chicken-spinach-pasta/ -->
-        <img class="myslides" src="images/chicken_salad.jpg" style="width:100%"> <!-- Gousto Cookbook (n.d). Crunchy Pulled Chicken Salad (Photgraph). https://www.gousto.co.uk/cookbook/chicken-recipes/crunchy-pulled-chicken-salad -->
-        <img class="myslides" src="images/caesarsalad.jpg" style="width:100%"> <!-- Marcoin SD (n.d.). http://www.marcoinsd.com/featured-location/2014/2/20/baja-california-mexico -->
-        <img class="myslides" src="images/chocolate_cake.jpg" style="width:100%"> <!-- Budymantra (2018). Sumptuous Chocolate Date Cake (Photograph). https://buddymantra.com/highly-decadent-festive-but-simple-cake-ideas-for-your-new-years-party/ -->
-        <img class="myslides" src="images/sorbet.jpg" style="width:100%"> <!-- Sweat Peas Kitchen (n.d). Lemonade Sorbet. https://sweetpeaskitchen.com/lemon-sorbet/ -->
-        <img class="myslides" src="images/peperoni.jpeg" style="width:100%"> <!-- Daniel Holzman (n.d.). Taste Cooking. https://tastecooking.com/recipes/neapolitan-style-pizza-in-your-home-oven/ -->
-        <img class="myslides" src="images/margherita.jpeg" style="width:100%"> <!-- Siano Mozzarella (n.d). https://www.sianomozzarella.com/our-products/ -->
-        <img class="myslides" src="images/veggie.jpg" style="width:100%"> <!-- Taste of Home (n.d). Whole Wheat Veggie Pizza Recipe (Photograph). https://www.tasteofhome.com/recipes/whole-wheat-veggie-pizza/ -->
-        <img class="myslides" src="images/tomato_pasta.jpg" style="width:100%"> <!-- The Original Dish (2020). Creamy Tomata Pasta with Herb Breadcrums (Photograph). https://www.theoriginaldish.com/2020/08/27/creamy-tomato-pasta-with-herb-breadcrumbs/ -->
-    </div>
-    <!-- This is used as a div class which is later referenced by my JavaScript so a slideshow can appear on the page -->
-
-    <script>
-        var myIndex = 0; //Declares the variable myIndex which is later used in a for loop to loop through the images
-        carousel(); // calls function carousel
-
-        function carousel() { // function is declared
-            let i; //declares variable i
-            let x = document.getElementsByClassName("myslides"); //declares variable x and assigns it to the amount of elements in image class "myslides"
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";   //iterates through the images and sets display style to none
-            }
-            myIndex++; //increases the variable myIndex
-            if (myIndex > x.length) { myIndex = 1 } //resets images back to beginning when at the end of images
-            x[myIndex - 1].style.display = "inline-block";
-            setTimeout(carousel, 4000); // Change image every 4 seconds
-        }
-
-        // Code adapted from W3Schools, retrieved from https://www.w3schools.com/howto/howto_js_slideshow.asp.
-    </script>
+   
 </body>

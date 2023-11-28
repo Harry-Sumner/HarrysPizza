@@ -2,3 +2,37 @@
 @model HarrysPizza.Pages.ContactModel
 @{
 }
+<head>
+    <link rel='stylesheet' href="~/css/contact.css">
+    <link rel='stylesheet' href="~/css/site.css">
+
+</head>
+<body>
+
+    <div class="contact_container">
+        <div class="form_container">
+            <div class = "form">
+                <form onsubmit="alert('Your request has been confirmed!')">
+                    <label for="fname">First Name:</label><br /> 
+                    <input type="text" id="fname" name="fname"><br />
+                    <label for="lname">Last Name:</label><br />
+                    <input type="text" id="lname" name="lname"><br />
+                    <label for="pnum">Phone Number:</label><br />
+                    <input type="text" id="lname" name="phonenum" value="+44 "><br />
+                    <label for="email">Email:</label><br />
+                    <input type="text" id="email" name="email"><br />
+                    <label for="message">Message:</label><br />
+                    <textarea name="message"></textarea><br />
+                    <input type="submit">
+                </form>
+            </div>
+           
+        </div>
+        <div class="right">
+            
+        </div>
+    </div>
+
+
+
+</body>
