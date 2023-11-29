@@ -18,59 +18,74 @@
         <div class="banner_text">Our Menu</div>
     </div>
     <!-- Creates a div that is referenced in CSS in order to display an image banner -->
-    <!--
-    <p>
-        <a asp-page="Create">Create New</a>
-    </p>
-    -->
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Item[0].Menu)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Item[0].Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Item[0].Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Item[0].Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Item[0].DietrySpecial)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model.Item) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Menu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DietrySpecial)
-                </td>
-                <!--
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
-                -->
-            </tr>
-    }
-        </tbody>
-    </table>
+    
+    <div id="btn_container">
+        <button class="btn clicked" onclick="filterSelection('all')"> Show all</button>
+        <button class="btn" onclick="filterSelection('Pizza')"> Pizza</button>
+        <button class="btn" onclick="filterSelection('Sides')"> Sides</button>
+    </div>
+    <div class="menu">
+        @foreach (var item in Model.Item) {
+        
+                <div class= "item @Html.ValueFor(modelItem => item.Menu)">
+                    <div class="content">
+                        <!--<img src="" alt="@Html.DisplayFor(modelItem => item.Name)" style="width:100%">-->
+                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        <p style= "color:seagreen">@Html.DisplayFor(modelItem => item.DietrySpecial)</p>
+                        <h4> £@Html.DisplayFor(modelItem => item.Price)</h4>
+                    </div>
+                </div>
+        }
+    </div>
+    <script>
+        filterSelection("all") //Calls the filter selection fuction with all parameter
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("item");
+            if (c == "all") c = "";
+            //Adds display class
+            for (i = 0; i < x.length; i++) {
+                RemoveClass(x[i], "display");
+                if (x[i].className.indexOf(c) > -1) AddClass(x[i], "display");
+            }
+        }
+
+        // Displey the filtered items
+        function AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {
+                    element.className += " " + arr2[i];
+                }
+            }
+        }
+
+        // Hide the menu items that are not selected
+        function RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Adds a selected look onto the button
+        var btnContainer = document.getElementById("btn_container");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+        
 </body>
