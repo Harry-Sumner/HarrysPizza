@@ -22,7 +22,9 @@
     <div id="btn_container">
         <button class="btn clicked" onclick="filterSelection('all')"> Show all</button>
         <button class="btn" onclick="filterSelection('Pizza')"> Pizza</button>
-        <button class="btn" onclick="filterSelection('Sides')"> Sides</button>
+        <button class="btn" onclick="filterSelection('Side')"> Sides</button>
+        <button class="btn" onclick="filterSelection('Dessert')"> Desserts</button>
+        <button class="btn" onclick="filterSelection('Drink')"> Drinks</button>
     </div>
     <div class="menu">
         @foreach (var item in Model.Item) {
