@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using HarrysPizza.Data;
 using HarrysPizza.Models;
 
-namespace HarrysPizza.Pages.Menu
+namespace HarrysPizza.Pages.Admin
 {
     public class CreateModel : PageModel
     {

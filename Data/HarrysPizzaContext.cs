@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using HarrysPizza.Models;
 
 namespace HarrysPizza.Data
 {
-    public class HarrysPizzaContext : DbContext
+    public class HarrysPizzaContext : IdentityDbContext
     {
         public HarrysPizzaContext (DbContextOptions<HarrysPizzaContext> options)
             : base(options)
@@ -18,6 +19,7 @@ namespace HarrysPizza.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Item>().ToTable("Menu");
         }
     }

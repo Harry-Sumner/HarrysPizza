@@ -18,7 +18,7 @@
         <div class="banner_text">Our Menu</div>
     </div>
     <!-- Creates a div that is referenced in CSS in order to display an image banner -->
-    
+
     <div id="btn_container">
         <button class="btn clicked" onclick="filterSelection('all')"> Show all</button>
         <button class="btn" onclick="filterSelection('Pizza')"> Pizza</button>
@@ -27,17 +27,18 @@
         <button class="btn" onclick="filterSelection('Drink')"> Drinks</button>
     </div>
     <div class="menu">
-        @foreach (var item in Model.Item) {
-        
-                <div class= "item @Html.ValueFor(modelItem => item.Menu)">
-                    <div class="content">
-                        <!--<img src="" alt="@Html.DisplayFor(modelItem => item.Name)" style="width:100%">-->
-                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
-                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                        <p style= "color:seagreen">@Html.DisplayFor(modelItem => item.DietrySpecial)</p>
-                        <h4> £@Html.DisplayFor(modelItem => item.Price)</h4>
-                    </div>
+        @foreach (var item in Model.Item)
+        {
+
+            <div class="item @Html.ValueFor(modelItem => item.Menu)">
+                <div class="content">
+                    <!--<img src="" alt="@Html.DisplayFor(modelItem => item.Name)" style="width:100%">-->
+                    <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                    <p style="color:seagreen">@Html.DisplayFor(modelItem => item.DietrySpecial)</p>
+                    <h4> £@Html.DisplayFor(modelItem => item.Price)</h4>
                 </div>
+            </div>
         }
     </div>
     <script>
