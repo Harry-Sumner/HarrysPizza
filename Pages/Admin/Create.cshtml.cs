@@ -36,6 +36,16 @@ namespace HarrysPizza.Pages.Admin
                 return Page();
             }
 
+          foreach (var file in Request.Form.Files)
+            {
+                MemoryStream stream = new MemoryStream();
+                file.CopyTo(stream);
+                Item.ImageData = stream.ToArray();
+
+                stream.Close();
+                stream.Dispose();
+            }
+
             _context.Items.Add(Item);
             await _context.SaveChangesAsync();
 
