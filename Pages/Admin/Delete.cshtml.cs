@@ -57,7 +57,7 @@ namespace HarrysPizza.Pages.Admin
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Admin/AdminIndex");
         }
     }
 }

@@ -66,7 +66,7 @@ namespace HarrysPizza.Pages.Admin
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Admin/AdminIndex");
         }
 
         private bool ItemExists(int id)
