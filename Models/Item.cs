@@ -8,7 +8,7 @@ namespace HarrysPizza.Models
 
         [Key]
         public int ID { get; set; }
-        [StringLength (20)]
+        [StringLength(20)]
         public string Menu { get; set; }
         [StringLength(30)]
         public string Name { get; set; }
@@ -17,6 +17,8 @@ namespace HarrysPizza.Models
         public decimal Price { get; set; }
         [StringLength(20)]
         public string DietrySpecial { get; set; }
+        public string ImageDescription { get; set; }
+        public byte[] ImageData { get; set; }
 
     }
 }

@@ -29,7 +29,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Item[0].DietrySpecial)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item[0].ImageData)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -50,6 +52,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DietrySpecial)
             </td>
+            @{
+                try
+                {
+                    <td>
+                        <img src="@string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(item.ImageData))" alt="@Html.DisplayFor(modelItem => item.ImageDescription)" style="width:50%; height:50%;" />
+                    </td>
+                }
+                catch
+                {
+                    <td>
+                        <img class="img-thumb" src="~/images/empty.png" alt="No Image Provided" style="width:50%; height:50%;" />
+                    </td>
+                }
+            }
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
