@@ -1,20 +1,9 @@
 ﻿
-/* Center website */
-.main {
-    max-width: 1000px;
-    margin: auto;
-}
-
-
-
 .menu {
-    margin: 8px -16px;
+    margin: 9px -18px;
 }
 
-    .menu,
-    .menu > .item {
-        padding: 8px;
-    }
+
 
 /* Seperates each item into 3 sections */
 .item {
@@ -39,8 +28,7 @@
 
 /* Content inside the items*/
 .content {
-    padding: 10px;
-    text-align: center;
+    padding: 8px;
 }
 
 /* Display class that shows filtered menu items */
