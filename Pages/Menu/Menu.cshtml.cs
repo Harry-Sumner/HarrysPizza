@@ -13,10 +13,29 @@ namespace HarrysPizza.Pages.Menu
     public class IndexModel : PageModel
     {
         private readonly HarrysPizza.Data.HarrysPizzaContext _context;
+ 
 
         public IndexModel(HarrysPizza.Data.HarrysPizzaContext context)
         {
             _context = context;
+        }
+
+        [BindProperty]
+        public string Search { get; set; }
+
+
+        public IActionResult OnPostSearch()
+        {
+            Item = _context.Items
+                .FromSqlRaw("SELECT * FROM Menu WHERE Name LIKE '%" + Search + "%'").ToList();
+            return Page();
+        }
+
+        public IActionResult OnPostClear()
+        {
+            Item = _context.Items
+                .FromSqlRaw("SELECT * FROM Menu").ToList();
+            return Page();
         }
 
         public IList<Item> Item { get;set; } = default!;

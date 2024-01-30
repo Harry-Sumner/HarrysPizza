@@ -1,0 +1,42 @@
+﻿@page
+@model HarrysPizza.Pages.Menu.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Menu Item Details</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Item.Name)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item.Menu)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.Menu)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item.DietrySpecial)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.DietrySpecial)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Menu">Back to Menu</a>
+</div>
