@@ -7,17 +7,63 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HarrysPizza.Data;
 using HarrysPizza.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace HarrysPizza.Pages.Menu
 {
     public class IndexModel : PageModel
     {
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly HarrysPizzaContext _db;
+        public IndexModel(HarrysPizza.Data.HarrysPizzaContext context, HarrysPizzaContext db,  UserManager<IdentityUser> userManager)
+        {
+            _db = db;
+            _userManager = userManager;
+            _context = context;
+        }
         private readonly HarrysPizza.Data.HarrysPizzaContext _context;
  
 
-        public IndexModel(HarrysPizza.Data.HarrysPizzaContext context)
+
+        public async Task<IActionResult> OnPostOrder (int itemID)
         {
-            _context = context;
+            var user = await _userManager.GetUserAsync(User);
+            CheckoutCustomer customer = await _db
+            .CheckoutCustomers
+            .FindAsync(user.Email);
+
+
+            var item = _db.BasketItem
+                .FromSqlRaw("SELECT * FROM BasketItem WHERE ItemID = {0}" + 
+                " AND BasketID = {1}", itemID, customer.BasketID)
+                .ToList()
+                .FirstOrDefault();
+
+            if (item == null)
+            {
+                BasketItem newItem = new BasketItem
+                {
+                    BasketID = customer.BasketID,
+                    ItemID = itemID,
+                    Quantity = 1,
+                };
+                _db.BasketItem.Add(newItem);
+                await _db.SaveChangesAsync();
+            }
+            else
+            {
+                item.Quantity = item.Quantity + 1;
+                _db.Attach(item).State = EntityState.Modified;
+                try
+                {
+                    await _db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    throw new Exception($"Order not found!", e);
+                }
+            }
+            return RedirectToPage();
         }
 
         [BindProperty]

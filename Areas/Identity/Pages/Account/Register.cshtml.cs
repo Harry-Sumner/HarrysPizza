@@ -19,6 +19,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
+
+using HarrysPizza.Data;
+using HarrysPizza.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace HarrysPizza.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
@@ -30,12 +35,19 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+
+
+        private HarrysPizzaContext _db;
+        public CheckoutCustomer Customer = new CheckoutCustomer();
+        public Basket Basket = new Basket();
+
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            HarrysPizzaContext db)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +55,7 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _db = db;
         }
 
         /// <summary>
@@ -141,6 +154,8 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        NewBasket();
+                        NewCustomer(Input.Email);
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -154,6 +169,33 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             return Page();
         }
 
+        
+        public void NewBasket()
+        {
+            var currentBasket = _db.Basket.FromSqlRaw("SELECT * FROM BASKET")
+                .OrderByDescending(b => b.BasketID)
+                .FirstOrDefault();
+            if (currentBasket == null)
+            {
+                Basket.BasketID = 1;
+            }
+            else
+            {
+                Basket.BasketID = currentBasket.BasketID + 1;
+            }
+
+            _db.Basket.Add(Basket);
+            _db.SaveChanges();
+        }
+        
+
+        public void NewCustomer(string Email)
+        {
+            Customer.Email = Input.Email;
+            Customer.BasketID = Basket.BasketID;
+            _db.CheckoutCustomers.Add(Customer);
+            _db.SaveChanges();
+        }
         private IdentityUser CreateUser()
         {
             try

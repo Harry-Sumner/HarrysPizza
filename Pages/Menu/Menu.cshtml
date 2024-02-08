@@ -50,7 +50,6 @@
                         try
                         {
                             <img src="@string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(item.ImageData))" alt="@Html.DisplayFor(modelItem => item.ImageDescription)" style="width:25vw; height:18vw; max-height: 250px; max-width: 400px" />
-
                         }
                         catch 
                         {
@@ -64,6 +63,11 @@
                     <p style="color:seagreen">@Html.DisplayFor(modelItem => item.DietrySpecial)</p>
                     <h4> £@Html.DisplayFor(modelItem => item.Price)</h4>
                     <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                    <br />
+                    <button type="submit" asp-page-handler="Order" asp-route-itemID="@item.ID">
+                        Add To Order
+                    </button>
+                    
                 </div>
             </div>
         }
