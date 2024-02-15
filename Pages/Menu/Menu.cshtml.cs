@@ -25,7 +25,7 @@ namespace HarrysPizza.Pages.Menu
  
 
 
-        public async Task<IActionResult> OnPostOrder (int itemID)
+        public async Task<IActionResult> OnPostOrderAsync (int itemID)
         {
             var user = await _userManager.GetUserAsync(User);
             CheckoutCustomer customer = await _db

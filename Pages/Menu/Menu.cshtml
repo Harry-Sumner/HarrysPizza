@@ -30,15 +30,7 @@
             <button type="submit" asp-page-handler="Search">Search</button>
             <button type="submit" asp-page-handler="Clear">Clear</button>
         </form>
-
-       
-
     </div>
-
-   
-        
-
-
     
     <div class="menu">
         @foreach (var item in Model.Item)
@@ -64,10 +56,9 @@
                     <h4> £@Html.DisplayFor(modelItem => item.Price)</h4>
                     <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
                     <br />
-                    <button type="submit" asp-page-handler="Order" asp-route-itemID="@item.ID">
-                        Add To Order
-                    </button>
-                    
+                     <form method="post">
+                         <button type="submit" asp-page-handler="Order" asp-route-itemID="@item.ID">Add to Order</button>
+                     </form>
                 </div>
             </div>
         }
@@ -120,6 +111,5 @@
                 this.className += " active";
             });
         }
-    </script>
-        
+    </script>  
 </body>
