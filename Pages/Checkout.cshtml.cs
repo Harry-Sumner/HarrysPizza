@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HarrysPizza.Data;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HarrysPizza.Pages
 {
+    [Authorize (Roles = "Admin, Customer")]
     public class CheckoutModel : PageModel
     {
         public OrderHistory Order = new();
@@ -17,13 +19,12 @@ namespace HarrysPizza.Pages
         public decimal Total;
         public long AmountPayable;
 
-        
-        public CheckoutModel(HarrysPizzaContext db, UserManager<IdentityUser> UserManager)
+        public CheckoutModel(HarrysPizzaContext db, UserManager<IdentityUser> userManager)
         {
             _db = db;
-            _UserManager = UserManager;
+            _UserManager = userManager;
+          
         }
-
         public async Task OnGetAsync()
         {
             var user = await _UserManager.GetUserAsync(User);
@@ -46,8 +47,6 @@ namespace HarrysPizza.Pages
             }
             AmountPayable = (long)Total;
         }
-
-
         public async Task<IActionResult> OnPostBuyAsync()
         {
             var currentOrder = _db.OrderHistory.FromSqlRaw("SELECT * FROM OrderHistory")
@@ -91,6 +90,50 @@ namespace HarrysPizza.Pages
             return RedirectToPage("/Index");
         }
 
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var users = await _UserManager.GetUserAsync(User);
+            CheckoutCustomer customer = await _db
+                .CheckoutCustomers
+                .FindAsync(users.Email);
 
+            var item = await _db.BasketItem.FindAsync(id, customer.BasketID);
+
+            if (item != null)
+            {
+                if (item.Quantity == 1)
+                {
+                    _db.BasketItem.Remove(item);
+                }
+                else
+                {
+                    item.Quantity -= 1;
+                    _db.BasketItem.Update(item);
+                }
+
+                await _db.SaveChangesAsync();
+            }
+
+            return RedirectToPage("/Checkout");
+        }
+
+        public async Task<IActionResult> OnPostAddAsync(int id)
+        {
+            var users = await _UserManager.GetUserAsync(User);
+            CheckoutCustomer customer = await _db
+                .CheckoutCustomers
+                .FindAsync(users.Email);
+
+            var item = await _db.BasketItem.FindAsync(id, customer.BasketID);
+
+            if (item != null)
+            {
+                item.Quantity += 1;
+                _db.BasketItem.Update(item);
+                await _db.SaveChangesAsync();
+            }
+
+            return RedirectToPage("/Checkout");
+        }
     }
 }

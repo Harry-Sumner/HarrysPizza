@@ -56,9 +56,13 @@
                     <h4> £@Html.DisplayFor(modelItem => item.Price)</h4>
                     <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
                     <br />
-                     <form method="post">
-                         <button type="submit" asp-page-handler="Order" asp-route-itemID="@item.ID">Add to Order</button>
-                     </form>
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <form method="post">
+                            <button type="submit" asp-page-handler="Order" asp-route-itemID="@item.ID">Add to Order</button>
+                        </form>
+                    }
+                    
                 </div>
             </div>
         }

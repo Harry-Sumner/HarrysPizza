@@ -11,7 +11,7 @@
 <link rel='stylesheet' href="~/css/site.css">
 
 <div class="image_banner">
-    <img src="~/images/menu_banner.png">
+    <img src="~/images/checkout.jpg">
 
     <div class="banner_text">Checkout</div>
 </div>
@@ -22,7 +22,6 @@
 }
 else
 {
-    <form method="post">
         <table class="table">
             <thead>
                 <tr>
@@ -36,11 +35,24 @@ else
                 @foreach(var item in Model.Items)
                 {
                     var subtotal = item.Price * item.Quantity;
-
                     <tr>
                         <td>@item.Name</td>
                         <td>@item.Price.ToString("C")</td>
-                        <td>@item.Quantity</td>
+                        <td>
+                        <div class="quantity_container">
+                            <form asp-page-handler="Add" asp-route-id="@item.ID" method="post">
+                                <button class="submit">
+                                    +
+                                </button>
+                            </form>
+                            @item.Quantity
+                            <form asp-page-handler="Delete" asp-route-id="@item.ID" method="post">
+                                <button class="submit">
+                                    -
+                                </button>
+                            </form>
+                        </div>
+                        </td>
                         <td>@subtotal.ToString("C")</td>
                     </tr>
                 }
@@ -48,7 +60,7 @@ else
         </table>
 
         <h2>Order Total: @Model.Total.ToString("C")</h2>
-
+    <form method="post">
         <button type ="submit" asp-page-handler="Buy">Buy</button>
     </form>
 }
