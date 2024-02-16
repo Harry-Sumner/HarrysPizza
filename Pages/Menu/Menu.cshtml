@@ -25,18 +25,44 @@
         <button class="btn" onclick="filterSelection('Side')"> Sides</button>
         <button class="btn" onclick="filterSelection('Dessert')"> Desserts</button>
         <button class="btn" onclick="filterSelection('Drink')"> Drinks</button>
+        <form method="post">
+            <input asp-for="Search" />
+            <button type="submit" asp-page-handler="Search">Search</button>
+            <button type="submit" asp-page-handler="Clear">Clear</button>
+        </form>
     </div>
+    
     <div class="menu">
         @foreach (var item in Model.Item)
         {
 
             <div class="item @Html.ValueFor(modelItem => item.Menu)">
                 <div class="content">
-                    <!--<img src="" alt="@Html.DisplayFor(modelItem => item.Name)" style="width:100%">-->
-                    <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                    @{
+                        try
+                        {
+                            <img src="@string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(item.ImageData))" alt="@Html.DisplayFor(modelItem => item.ImageDescription)" style="width:25vw; height:18vw; max-height: 250px; max-width: 400px" />
+                        }
+                        catch 
+                        {
+                            <img class="img-thumb" src="~/images/empty.png" alt="No Image Provided" style="width:25vw; height:18vw; max-height: 250px; max-width: 425px" />
+                        }
+                    }
+                    <br />
+                    <br />
+                    <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
                     <p>@Html.DisplayFor(modelItem => item.Description)</p>
                     <p style="color:seagreen">@Html.DisplayFor(modelItem => item.DietrySpecial)</p>
                     <h4> £@Html.DisplayFor(modelItem => item.Price)</h4>
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                    <br />
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <form method="post">
+                            <button type="submit" asp-page-handler="Order" asp-route-itemID="@item.ID">Add to Order</button>
+                        </form>
+                    }
+                    
                 </div>
             </div>
         }
@@ -89,6 +115,5 @@
                 this.className += " active";
             });
         }
-    </script>
-        
+    </script>  
 </body>

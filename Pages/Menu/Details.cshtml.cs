@@ -8,18 +8,17 @@ using Microsoft.EntityFrameworkCore;
 using HarrysPizza.Data;
 using HarrysPizza.Models;
 
-namespace HarrysPizza.Pages.Admin
+namespace HarrysPizza.Pages.Menu
 {
-    public class DeleteModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly HarrysPizza.Data.HarrysPizzaContext _context;
 
-        public DeleteModel(HarrysPizza.Data.HarrysPizzaContext context)
+        public DetailsModel(HarrysPizza.Data.HarrysPizzaContext context)
         {
             _context = context;
         }
 
-        [BindProperty]
       public Item Item { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -30,7 +29,6 @@ namespace HarrysPizza.Pages.Admin
             }
 
             var item = await _context.Items.FirstOrDefaultAsync(m => m.ID == id);
-
             if (item == null)
             {
                 return NotFound();
@@ -40,24 +38,6 @@ namespace HarrysPizza.Pages.Admin
                 Item = item;
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null || _context.Items == null)
-            {
-                return NotFound();
-            }
-            var item = await _context.Items.FindAsync(id);
-
-            if (item != null)
-            {
-                Item = item;
-                _context.Items.Remove(Item);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("/Admin/AdminIndex");
         }
     }
 }

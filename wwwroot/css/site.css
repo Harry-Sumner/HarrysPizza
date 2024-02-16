@@ -39,3 +39,8 @@ body {
     font-weight: bold;
     text-align: center;
 }
+
+.quantity_container {
+    display: grid;
+    grid-auto-flow: column;
+}

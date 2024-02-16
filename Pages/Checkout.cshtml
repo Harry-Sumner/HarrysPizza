@@ -1,4 +1,66 @@
 ﻿@page
 @model HarrysPizza.Pages.CheckoutModel
 @{
+    ViewData["Title"] = "Checkout";
+}
+@using HarrysPizza.Models
+@using HarrysPizza.Data
+@using Microsoft.Extensions.Options
+
+<link rel='stylesheet' href="~/css/menu.css">
+<link rel='stylesheet' href="~/css/site.css">
+
+<div class="image_banner">
+    <img src="~/images/checkout.jpg">
+
+    <div class="banner_text">Checkout</div>
+</div>
+
+@if (Model.Items.Count == 0)
+{
+    <p>There are no items in your order. Please visit our menu to add items to your order.</p>
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.Items)
+                {
+                    var subtotal = item.Price * item.Quantity;
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>
+                        <div class="quantity_container">
+                            <form asp-page-handler="Add" asp-route-id="@item.ID" method="post">
+                                <button class="submit">
+                                    +
+                                </button>
+                            </form>
+                            @item.Quantity
+                            <form asp-page-handler="Delete" asp-route-id="@item.ID" method="post">
+                                <button class="submit">
+                                    -
+                                </button>
+                            </form>
+                        </div>
+                        </td>
+                        <td>@subtotal.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h2>Order Total: @Model.Total.ToString("C")</h2>
+    <form method="post">
+        <button type ="submit" asp-page-handler="Buy">Buy</button>
+    </form>
 }

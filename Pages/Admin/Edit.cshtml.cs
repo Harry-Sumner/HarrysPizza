@@ -48,6 +48,16 @@ namespace HarrysPizza.Pages.Admin
                 return Page();
             }
 
+            foreach (var file in Request.Form.Files)
+            {
+                MemoryStream stream = new MemoryStream();
+                file.CopyTo(stream);
+                Item.ImageData = stream.ToArray();
+
+                stream.Close();
+                stream.Dispose();
+            }
+
             _context.Attach(Item).State = EntityState.Modified;
 
             try
@@ -66,7 +76,7 @@ namespace HarrysPizza.Pages.Admin
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Admin/AdminIndex");
         }
 
         private bool ItemExists(int id)
