@@ -12,42 +12,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using HarrysPizza.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-
-
 using HarrysPizza.Data;
-using HarrysPizza.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HarrysPizza.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly SignInManager<HarrysPizzaUser> _signInManager;
+        private readonly UserManager<HarrysPizzaUser> _userManager;
+        private readonly IUserStore<HarrysPizzaUser> _userStore;
+        private readonly IUserEmailStore<HarrysPizzaUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
-
 
         private HarrysPizzaContext _db;
         public CheckoutCustomer Customer = new CheckoutCustomer();
         public Basket Basket = new Basket();
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<HarrysPizzaUser> userManager,
+            IUserStore<HarrysPizzaUser> userStore,
+            SignInManager<HarrysPizzaUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            HarrysPizzaContext db )
+            HarrysPizzaContext db)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -87,6 +83,14 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+
+            [Required, DataType(DataType.Text), Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required, DataType(DataType.Text), Display(Name = "Surname")]
+            public string Surname { get; set; }
+
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -129,11 +133,12 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.FirstName = Input.FirstName;
+                user.Surname = Input.Surname;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Customer");
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -170,7 +175,6 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             return Page();
         }
 
-        
         public void NewBasket()
         {
             var currentBasket = _db.Basket.FromSqlRaw("SELECT * FROM BASKET")
@@ -188,7 +192,7 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             _db.Basket.Add(Basket);
             _db.SaveChanges();
         }
-        
+
 
         public void NewCustomer(string Email)
         {
@@ -197,27 +201,28 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             _db.CheckoutCustomers.Add(Customer);
             _db.SaveChanges();
         }
-        private IdentityUser CreateUser()
+
+        private HarrysPizzaUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<HarrysPizzaUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(HarrysPizzaUser)}'. " +
+                    $"Ensure that '{nameof(HarrysPizzaUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<IdentityUser> GetEmailStore()
+        private IUserEmailStore<HarrysPizzaUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<IdentityUser>)_userStore;
+            return (IUserEmailStore<HarrysPizzaUser>)_userStore;
         }
     }
 }
