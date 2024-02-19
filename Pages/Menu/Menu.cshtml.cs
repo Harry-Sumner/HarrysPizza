@@ -14,9 +14,9 @@ namespace HarrysPizza.Pages.Menu
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<HarrysPizzaUser> _userManager;
         private readonly HarrysPizzaContext _db;
-        public IndexModel(HarrysPizza.Data.HarrysPizzaContext context, HarrysPizzaContext db,  UserManager<IdentityUser> userManager)
+        public IndexModel(HarrysPizza.Data.HarrysPizzaContext context, HarrysPizzaContext db,  UserManager<HarrysPizzaUser> userManager)
         {
             _db = db;
             _userManager = userManager;

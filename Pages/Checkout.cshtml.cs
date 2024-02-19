@@ -13,13 +13,13 @@ namespace HarrysPizza.Pages
     {
         public OrderHistory Order = new();
         private readonly HarrysPizzaContext _db;
-        private readonly UserManager<IdentityUser> _UserManager;
+        private readonly UserManager<HarrysPizzaUser> _UserManager;
         public IList<CheckoutItem> Items { get; private set; }
 
         public decimal Total;
         public long AmountPayable;
 
-        public CheckoutModel(HarrysPizzaContext db, UserManager<IdentityUser> userManager)
+        public CheckoutModel(HarrysPizzaContext db, UserManager<HarrysPizzaUser> userManager)
         {
             _db = db;
             _UserManager = userManager;

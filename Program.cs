@@ -10,8 +10,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<HarrysPizzaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("HarrysPizzaContext") ?? throw new InvalidOperationException("Connection string 'HarrysPizzaContext' not found.")));
 
-builder.Services.AddDefaultIdentity<HarrysPizzaUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<HarrysPizzaContext>();
 
 //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     //.AddEntityFrameworkStores<HarrysPizzaContext>();

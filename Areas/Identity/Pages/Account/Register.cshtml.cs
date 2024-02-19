@@ -139,6 +139,7 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "Customer");
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -197,6 +198,7 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
         public void NewCustomer(string Email)
         {
             Customer.Email = Input.Email;
+            Customer.Name = $"{Input.FirstName} {Input.Surname}";
             Customer.BasketID = Basket.BasketID;
             _db.CheckoutCustomers.Add(Customer);
             _db.SaveChanges();
