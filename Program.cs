@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using HarrysPizza.Data;
 using Microsoft.AspNetCore.Identity;
+using HarrysPizza.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,18 +10,19 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<HarrysPizzaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("HarrysPizzaContext") ?? throw new InvalidOperationException("Connection string 'HarrysPizzaContext' not found.")));
 
+
 //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     //.AddEntityFrameworkStores<HarrysPizzaContext>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(
+builder.Services.AddIdentity<HarrysPizzaUser, IdentityRole>(
 
     options =>
     {
         options.Stores.MaxLengthForKeys = 128;
     })
-
+        
 .AddEntityFrameworkStores<HarrysPizzaContext>()
 .AddRoles<IdentityRole>()
 .AddDefaultUI()
@@ -77,7 +79,7 @@ using(var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<HarrysPizzaContext>();
     context.Database.Migrate();
-    var userMgr = services.GetRequiredService<UserManager<IdentityUser>>();
+    var userMgr = services.GetRequiredService<UserManager<HarrysPizzaUser>>();
     var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
     IdentitySeedData.Initialize(context,userMgr, roleMgr).Wait();  
 }

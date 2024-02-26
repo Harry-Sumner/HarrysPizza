@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HarrysPizza.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class CreateIdentity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,8 @@ namespace HarrysPizza.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -48,7 +50,7 @@ namespace HarrysPizza.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
-            
+           
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -213,8 +215,10 @@ namespace HarrysPizza.Migrations
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
 
+          
+
             migrationBuilder.DropTable(
-                name: "Menu");
+                name: "OrderItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -34,12 +34,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Contact">Contact</a>
                         </li>
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Checkout">Checkout</a>
+                            </li>
+                        }
                         
                     </ul>
-                    @if (this.User.Identity.IsAuthenticated)
-                    {
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Checkout">Checkout</a>
-                    }
+
+                    
                     <partial name = "_LoginPartial"/>
                 </div>
             </div>

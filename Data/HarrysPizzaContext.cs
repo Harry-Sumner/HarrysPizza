@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HarrysPizza.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace HarrysPizza.Data
 {
-    public class HarrysPizzaContext : IdentityDbContext
+    public class HarrysPizzaContext : IdentityDbContext<HarrysPizzaUser>
     {
         public HarrysPizzaContext (DbContextOptions<HarrysPizzaContext> options)
             : base(options)
         {
         }
+
+        public DbSet<HarrysPizzaUser> HarrysPizzaUser { get; set; }
 
         public DbSet<Item> Items { get; set; } = default!;
 
@@ -30,6 +34,7 @@ namespace HarrysPizza.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<HarrysPizzaUser>().Ignore(e => e.Name);
             modelBuilder.Entity<Item>().ToTable("Menu");
 
             modelBuilder.Entity<BasketItem>().HasKey(t => new {t.ItemID, t.BasketID});

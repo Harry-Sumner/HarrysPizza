@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HarrysPizza.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace HarrysPizza.Data
 {
     public class IdentitySeedData
     {
         public static async Task Initialize(HarrysPizzaContext context,
-            UserManager<IdentityUser> userManager,
+            UserManager<HarrysPizzaUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             context.Database.EnsureCreated();
@@ -27,11 +28,13 @@ namespace HarrysPizza.Data
 
             if (await userManager.FindByNameAsync("admin@harryspizza.com") == null)
             {
-                var user = new IdentityUser
+                var user = new HarrysPizzaUser
                 {
                     UserName = "admin@harryspizza.com",
                     Email = "admin@harryspizza.com",
-                    PhoneNumber = "12345678911"
+                    PhoneNumber = "12345678911",
+                    FirstName = "Admin",
+                    Surname = "Admin"
                 };
                 var result = await userManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -42,11 +45,13 @@ namespace HarrysPizza.Data
             }
             if (await userManager.FindByNameAsync("customer@harryspizza.com") == null)
             {
-                var user = new IdentityUser
+                var user = new HarrysPizzaUser
                 {
                     UserName = "customer@harryspizza.com",
                     Email = "customer@harryspizza.com",
-                    PhoneNumber = "12345678910"
+                    PhoneNumber = "12345678910",
+                    FirstName = "Customer",
+                    Surname = "Customer"
                 };
                 var result = await userManager.CreateAsync(user);
                 if (result.Succeeded)
