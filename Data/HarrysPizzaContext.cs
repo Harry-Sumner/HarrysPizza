@@ -18,6 +18,8 @@ namespace HarrysPizza.Data
         {
         }
 
+        
+
         public DbSet<HarrysPizzaUser> HarrysPizzaUser { get; set; }
 
         public DbSet<Item> Items { get; set; } = default!;
@@ -27,6 +29,8 @@ namespace HarrysPizza.Data
         public DbSet<BasketItem> BasketItem { get; set; } = default!;
         public DbSet<OrderHistory> OrderHistory { get; set; } = default!;
         public DbSet<OrderItem> OrderItems { get; set; } = default!;
+
+        public DbSet<ImageSlideshow> ImageSlideshow { get; set; } = default!;
 
         [NotMapped]
         public DbSet<CheckoutItem> CheckoutItems { get; set; } = default!;

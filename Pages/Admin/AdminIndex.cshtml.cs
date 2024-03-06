@@ -20,9 +20,14 @@ namespace HarrysPizza.Pages.Admin
         }
 
         public IList<Item> Item { get;set; } = default!;
+        public IList<ImageSlideshow> ImageSlideshow { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
+            if (_context.ImageSlideshow != null)
+            {
+                ImageSlideshow = await _context.ImageSlideshow.ToListAsync();
+            }
             if (_context.Items != null)
             {
                 Item = await _context.Items.ToListAsync();
