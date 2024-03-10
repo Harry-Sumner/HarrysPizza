@@ -1,6 +1,7 @@
 ﻿@page
 @model HarrysPizza.Pages.ContactModel
 @{
+    ViewData["Title"] = "Contact Us";
 }
 <head>
     <link rel='stylesheet' href="~/css/contact.css">
@@ -8,12 +9,16 @@
 
 </head>
 <body>
-
+    <div class="image_banner">
+        <img src="~/images/contact.jpg">
+        <div class="banner_text">Contact Us</div>
+    </div>
     <div class="contact_container">
         <div class="form_container">
+            <h4>Have a question? Get in touch using the form below.</h4>
             <div class = "form">
-                <form onsubmit="alert('Your request has been confirmed!')">
-                    <label for="fname">First Name:</label><br /> 
+                <form onsubmit="alert('Your message has been sent. We aim to respond within 2 - 3 days.')">
+                    <label for="fname">First Name:</label><br />
                     <input type="text" id="fname" name="fname"><br />
                     <label for="lname">Last Name:</label><br />
                     <input type="text" id="lname" name="lname"><br />
@@ -29,10 +34,10 @@
            
         </div>
         <div class="right">
-            
+            <h4>Live local? Come and pay us a visit, we would love to chat!</h4>
+            <div class="google-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d149.41057354808257!2d-2.891411184626113!3d53.189707768333555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487add497307130b%3A0xd396333e4ffbe7a9!2s29%20Bridge%20St%2C%20Chester%20CH1%201NG!5e0!3m2!1sen!2suk!4v1709759664446!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen = "" loading="lazy"</iframe>
+            </div>
         </div>
     </div>
-
-
-
 </body>
