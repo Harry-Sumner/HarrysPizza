@@ -8,7 +8,7 @@
 }
 
 .slideshow {
-    max-width: 50%;
+    width: 50%;
     position: center;
     margin: auto;
     padding: 10px;

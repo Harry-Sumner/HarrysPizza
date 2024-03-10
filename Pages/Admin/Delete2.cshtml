@@ -1,0 +1,19 @@
+﻿@page
+@model HarrysPizza.Pages.Admin.Slideshow.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <img src="@string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(Model.ImageSlideshow.ImageData))" alt="@Html.DisplayFor(model => model.ImageSlideshow.ImageDescription)" style="width:50%; height:50%;" />
+    
+    <form method="post">
+        <input type="hidden" asp-for="ImageSlideshow.ImageID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./AdminIndex">Back to List</a>
+    </form>
+</div>

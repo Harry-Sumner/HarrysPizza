@@ -1,19 +1,36 @@
 ﻿.contact_container { /* sets the width and padding of the container */
     width: 100%;
     padding: 1px;
-    font-size: 1.5vw;
+   
 }
 
 .form_container { /* these two split the container into to parts while also aligning text */
     float: left;
-    width: 75%;
+    width: 48%;
+    padding: 2%;
 }
 
 .right {
     float: right;
-    width: 23%;
+    width: 48%;
     padding: 2%;
 }
+/*Code adapted from Digital Inspiration, 2022*/
+    .google-map {
+        position: relative;
+        padding-bottom: 75%;
+        height: 0;
+        overflow: hidden;
+    }
+
+        .google-map iframe {
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+/*End of code adapted*/
 input[type=text], select { /* formats all text input types so it is spread accross the page and also adds border styles and text */
     width: 100%;
     display: inline-block;
@@ -42,7 +59,7 @@ input[type=submit]:hover { /* changes colour of the button when the cursor hover
     border-radius: 10px;
     background-color: lightgray;
     padding: 10px;
-    width: 60%;
+    width: 80%;
     max-height: 100%;
 }
 
@@ -50,3 +67,6 @@ textarea {
     height: 100%;
     width: 100%;
 }
+
+
+

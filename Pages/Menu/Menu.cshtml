@@ -8,13 +8,13 @@
 <head>
     <link rel='stylesheet' href="~/css/menu.css">
     <link rel='stylesheet' href="~/css/site.css">
+    <script src="~/js/site.js"></script>
 </head>
 
 <body>
 
     <div class="image_banner">
         <img src="~/images/menu_banner.png">
-
         <div class="banner_text">Our Menu</div>
     </div>
     <!-- Creates a div that is referenced in CSS in order to display an image banner -->
@@ -59,7 +59,7 @@
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <form method="post">
-                            <button type="submit" asp-page-handler="Order" asp-route-itemID="@item.ID">Add to Order</button>
+                            <button type="submit" onclick="snackbarFunc()" asp-page-handler="Order" asp-route-itemID="@item.ID">Add to Order</button>
                         </form>
                     }
                     
@@ -67,6 +67,8 @@
             </div>
         }
     </div>
+    <div id="snackbar">Item added to order.</div>
+
     <script>
         filterSelection("all") //Calls the filter selection fuction with all parameter
         function filterSelection(c) {

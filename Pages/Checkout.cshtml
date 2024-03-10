@@ -7,7 +7,6 @@
 @using HarrysPizza.Data
 @using Microsoft.Extensions.Options
 
-<link rel='stylesheet' href="~/css/menu.css">
 <link rel='stylesheet' href="~/css/site.css">
 
 <div class="image_banner">
@@ -40,15 +39,15 @@ else
                         <td>@item.Price.ToString("C")</td>
                         <td>
                         <div class="quantity_container">
-                            <form asp-page-handler="Add" asp-route-id="@item.ID" method="post">
-                                <button class="submit">
-                                    +
-                                </button>
-                            </form>
-                            @item.Quantity
                             <form asp-page-handler="Delete" asp-route-id="@item.ID" method="post">
                                 <button class="submit">
                                     -
+                                </button>
+                            </form>
+                            @item.Quantity
+                            <form asp-page-handler="Add" asp-route-id="@item.ID" method="post">
+                                <button class="submit">
+                                    +
                                 </button>
                             </form>
                         </div>
