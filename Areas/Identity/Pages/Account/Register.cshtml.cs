@@ -34,7 +34,7 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
 
         private HarrysPizzaContext _db;
-        public CheckoutCustomer Customer = new CheckoutCustomer();
+        public CheckoutCustomer Customer = new CheckoutCustomer(); 
         public Basket Basket = new Basket();
 
         public RegisterModel(
@@ -84,12 +84,15 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
 
+            // Code adapted from Asaduzzaman(2015)
+
             [Required, DataType(DataType.Text), Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required, DataType(DataType.Text), Display(Name = "Surname")]
             public string Surname { get; set; }
 
+            // End of code adapted
 
             [Required]
             [EmailAddress]
@@ -115,7 +118,7 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
-
+        // sets validation on data entry.
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -139,7 +142,7 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Customer");
+                    await _userManager.AddToRoleAsync(user, "Customer"); //Assign default customer role to user
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -161,8 +164,8 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        NewBasket();
-                        NewCustomer(Input.Email);
+                        NewBasket(); //Creates newBasketID for user calling function
+                        NewCustomer(Input.Email); //Assign basket to user using function
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -181,17 +184,18 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
             var currentBasket = _db.Basket.FromSqlRaw("SELECT * FROM BASKET")
                 .OrderByDescending(b => b.BasketID)
                 .FirstOrDefault();
-            if (currentBasket == null)
+            if (currentBasket == null) //if no basket, create one
             {
                 Basket.BasketID = 1;
             }
             else
             {
-                Basket.BasketID = currentBasket.BasketID + 1;
+                Basket.BasketID = currentBasket.BasketID + 1; //increment last basket by 1
             }
 
-            _db.Basket.Add(Basket);
+            _db.Basket.Add(Basket); //Assign and save changes
             _db.SaveChanges();
+            // function that creates a new basket in basket table
         }
 
 
@@ -199,9 +203,10 @@ namespace HarrysPizza.Areas.Identity.Pages.Account
         {
             Customer.Email = Input.Email;
             Customer.Name = $"{Input.FirstName} {Input.Surname}";
-            Customer.BasketID = Basket.BasketID;
-            _db.CheckoutCustomers.Add(Customer);
+            Customer.BasketID = Basket.BasketID; // links user account to basket
+            _db.CheckoutCustomers.Add(Customer); 
             _db.SaveChanges();
+            // function that assigns basket to user and saves to database
         }
 
         private HarrysPizzaUser CreateUser()

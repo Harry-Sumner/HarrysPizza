@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
+// Code adapted from Asaduzzaman(2015)
+
 namespace HarrysPizza.Models
 {
     public class HarrysPizzaUser: IdentityUser
@@ -15,3 +17,4 @@ namespace HarrysPizza.Models
         public string Name { get { return $"{FirstName} {Surname}"; } }
     }
 }
+// End of code adapted

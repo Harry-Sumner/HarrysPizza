@@ -20,7 +20,11 @@ namespace HarrysPizza.Pages.Admin
         }
 
         public IList<Item> Item { get;set; } = default!;
+        // Creates a list view based on Item Class - with constructors
+
         public IList<ImageSlideshow> ImageSlideshow { get; set; } = default!;
+        // Creates a list baed on the Image slideshow class - with constructors
+
 
         public async Task OnGetAsync()
         {

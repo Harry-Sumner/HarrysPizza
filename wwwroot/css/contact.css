@@ -4,69 +4,69 @@
    
 }
 
-.form_container { /* these two split the container into to parts while also aligning text */
-    float: left;
-    width: 48%;
-    padding: 2%;
-}
-
-.right {
-    float: right;
-    width: 48%;
-    padding: 2%;
-}
-/*Code adapted from Digital Inspiration, 2022*/
-    .google-map {
-        position: relative;
-        padding-bottom: 75%;
-        height: 0;
-        overflow: hidden;
+    .form_container { /* these two split the container into to parts while also aligning text */
+        float: left;
+        width: 48%;
+        padding-bottom: 20%;
     }
 
-        .google-map iframe {
-            position:absolute;
-            top: 0;
-            left: 0;
-            width: 100% !important;
-            height: 100% !important;
+        input[type=text], select { /* Adds styling to form and allows form to take up all the width */
+            width: 100%;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-/*End of code adapted*/
-input[type=text], select { /* formats all text input types so it is spread accross the page and also adds border styles and text */
-    width: 100%;
-    display: inline-block;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
 
-input[type=submit] { /* formats the submit button so it has colour, spreads accross the whole page and also adds a cursor effect */
-    width: 100%;
-    background-color: darkgrey;
-    cursor: pointer;
-    font-size: 1.5vw;
-    font-weight: bold;
-}
+        input[type=submit] { /* adds colour to button and allows font on button to be bold and is adaptive */
+            width: 100%;
+            background-color: darkgrey;
+            cursor: pointer;
+            font-size: 1.5vw;
+            font-weight: bold;
+        }
 
-label { /* formats the colour of the text in the label */
-    color: black;
-    font-weight: bold;
-}
+        label { /* makes text labels bold */
+            color: black;
+            font-weight: bold;
+        }
 
-input[type=submit]:hover { /* changes colour of the button when the cursor hovers over */
-    background-color: grey;
-}
+        input[type=submit]:hover { /* changes colour of the button when the cursor hovers over */
+            background-color: grey;
+        }
 
-.form { /* formats the form layout by adding padding and background colour */
-    border-radius: 10px;
-    background-color: lightgray;
-    padding: 10px;
-    width: 80%;
-    max-height: 100%;
-}
+        .form { /* formats the form layout by adding padding and background colour */
+            background-color: lightgray;
+            padding: 10px;
+            width: 80%;
+        }
 
-textarea {
-    height: 100%;
-    width: 100%;
-}
+        textarea {
+            height: 100%;
+            width: 100%;
+        }
+
+    .right {
+        float: right;
+        width: 48%;
+        
+    }
+    /*Code adapted from Digital Inspiration(2022) */
+        .google-map {
+            position: relative;
+            padding-bottom: 120%;
+            height: 0;
+            overflow: hidden; /* allows map to be resposive */
+        }
+
+            .google-map iframe {
+                position:absolute;
+                top: 0;
+                left: 0;
+                width: 85%;
+                height: 75%; 
+            }
+    /*End of code adapted*/
+    
 
 
 

@@ -32,6 +32,8 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdmins", policy => policy.RequireRole("Admin"));
 });
+
+//Added authorisation so only those with admin role are able to access pages contained in Admin folder. This ensures users cant bypass restrictions by going direct to url for edit perms
 builder.Services.AddRazorPages()
     .AddRazorPagesOptions(options =>
     {
@@ -79,7 +81,7 @@ using(var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<HarrysPizzaContext>();
     context.Database.Migrate();
-    var userMgr = services.GetRequiredService<UserManager<HarrysPizzaUser>>();
+    var userMgr = services.GetRequiredService<UserManager<HarrysPizzaUser>>(); //Implementes HarrysPizzaUser so extra fields are implemented into identity.
     var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
     IdentitySeedData.Initialize(context,userMgr, roleMgr).Wait();  
 }

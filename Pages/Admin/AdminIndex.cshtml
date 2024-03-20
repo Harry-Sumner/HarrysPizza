@@ -11,7 +11,11 @@
 
 <h1>Admin</h1>
 
-<div class="tab">
+
+<!-- Code adapted from W3Schools(n.d.-c) -->
+
+<!-- Allows user to toggle between divs  -->
+<div class="tab"> 
     <button class="tablinks" onclick="openTab('Menu')" id="defaultTab">Menu Page</button>
     <button class="tablinks" onclick="openTab('ImageSlideshow')">Image Slideshow</button>
 </div>
@@ -21,11 +25,13 @@
 <div id="Menu" class="tabcontent">
     <h4>Menu Settings</h4>
     <p>
+        <!-- Link to create / add new menu item -->
         <a asp-page="Create">Create New</a>
     </p>
     <table class="table">
         <thead>
-            <tr>
+            <!-- Creates headers for table from database -->
+            <tr> 
                 <th>
                     @Html.DisplayNameFor(model => model.Item[0].Menu)
                 </th>
@@ -47,6 +53,7 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Reads in each item in the sql database and displays HTML text -->
     @foreach (var item in Model.Item) {
             <tr>
                 <td>
@@ -64,7 +71,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DietrySpecial)
                 </td>
-                @{
+                @{ //Reads image in bytes from database and then converts to an image and displays alt text for accessability, if no image present for item then black image icon used
                     try
                     {
                         <td>
@@ -79,6 +86,7 @@
                     }
                 }
                 <td>
+                    <!-- Links to page that allow CRUD operations like edit / delete -->
                     <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
                     <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
                     <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
@@ -92,10 +100,12 @@
 <div id="ImageSlideshow" class="tabcontent">
     <h4>Image Slideshow Settings</h4>
     <p>
+        <!-- Link to create / add new image for slideshow -->
         <a asp-page="Create2">Add New Image</a>
     </p>
     <table class="table">
-        <thead>
+        <thead> 
+            <!-- Displays headers for image slideshow database -->
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.ImageSlideshow[0].ImageDescription)
@@ -107,6 +117,7 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Displays images and alt text for slideshow images -->
             @foreach (var item in Model.ImageSlideshow)
             {
                 <tr>
@@ -117,6 +128,7 @@
                         <img src="@string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(item.ImageData))" alt="@Html.DisplayFor(modelItem => item.ImageDescription)" style="width:50%; height:50%;" />
                     </td>
                     <td>
+                        <!-- Add button for crud (deleting) images -->
                         <a asp-page="./Delete2" asp-route-id="@item.ImageID">Delete</a>
                     </td>
                 </tr>
@@ -124,3 +136,4 @@
         </tbody>
     </table>
 </div>
+<!-- End of code adapted -->

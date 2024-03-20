@@ -7,19 +7,18 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Setting up a viewport so the website is optimised for each kind of device -->
+    <!-- Setting up a viewport so the website is optimised for different screen sizes -->
     <link rel='stylesheet' href="~/css/about.css">
     <link rel='stylesheet' href="~/css/site.css">
-    <!-- Reference to the CSS style sheet -->
+    <!-- Reference to the CSS style sheet - generic site and specialised about -->
 </head>
 <body>
-    <!-- This creates a div which contains the links used in the navigation bar -->
+    <!-- This creates a div that stores an image banner with text -->
     <div class="image_banner">
-        <img src="~/images/about_banner.png"> <!-- Top Slice (n.d.). https://www.topslice.co.uk/ -->
+        <img src="~/images/about_banner.png" alt="Image of veggie pizza on a table"> <!-- Pizza Oven Reviews (n.d.) -->
         <div class="banner_text">About Harry's Pizza</div>
     </div>
-    <!-- Creates a div that is referenced in CSS in order to display an image banner -->
-
+ 
     <div class="about_container">
             <p>
                 Harry’s Pizza is a local gem that has been serving up mouthwatering pizzas to the residents of Chester. 
@@ -55,6 +54,7 @@
     <!-- This is used as a div class which is later referenced by my JavaScript so a slideshow can appear on the page -->
 
     <script>
+        // Code adapted from W3Schools(n.d.-d).
         var myIndex = 0; //Declares the variable myIndex which is later used in a for loop to loop through the images
         carousel(); // calls function carousel
 
@@ -69,8 +69,8 @@
             x[myIndex - 1].style.display = "inline-block";
             setTimeout(carousel, 4000); // Change image every 4 seconds
         }
-
-        // Code adapted from W3Schools, retrieved from https://www.w3schools.com/howto/howto_js_slideshow.asp.
+        //End of code adapted
+       
     </script>
 </body>
 </html>

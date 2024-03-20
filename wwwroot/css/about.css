@@ -12,9 +12,9 @@
     position: center;
     margin: auto;
     padding: 10px;
-}
+} /* sets size and position of slideshow*/
 
 .myslides {
     vertical-align: middle;
-}
+} /* aligns images to display central */
 

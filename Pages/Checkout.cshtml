@@ -9,18 +9,20 @@
 
 <link rel='stylesheet' href="~/css/site.css">
 
+<!-- This creates a div that stores an image banner with text -->
 <div class="image_banner">
-    <img src="~/images/checkout.jpg">
+    <img src="~/images/checkout.jpg" alt="Image of person handing a customer a card reader to pay"> <!-- N26 (n.d.) -->
 
     <div class="banner_text">Checkout</div>
 </div>
-
+<!-- Checks the amount of items in order and if 0 will display following message -->
 @if (Model.Items.Count == 0)
 {
     <p>There are no items in your order. Please visit our menu to add items to your order.</p>
 }
 else
 {
+    //If items are in order then a table is displayed with the following table headers.
         <table class="table">
             <thead>
                 <tr>
@@ -32,7 +34,7 @@ else
             </thead>
             <tbody>
                 @foreach(var item in Model.Items)
-                {
+                { //for every item in order, display the name and subtotal for each item
                     var subtotal = item.Price * item.Quantity;
                     <tr>
                         <td>@item.Name</td>
@@ -50,6 +52,7 @@ else
                                     +
                                 </button>
                             </form>
+                            <!-- Added buttons to each item in the quantity field that links to handlers allowing user to remove and add to quantity -->
                         </div>
                         </td>
                         <td>@subtotal.ToString("C")</td>
@@ -57,9 +60,9 @@ else
                 }
             </tbody>
         </table>
-
+        //display total cost of order
         <h2>Order Total: @Model.Total.ToString("C")</h2>
-    <form method="post">
+    <form method="post"> <!-- Button which directs to handler to process order purchase -->
         <button type ="submit" asp-page-handler="Buy">Buy</button>
     </form>
 }

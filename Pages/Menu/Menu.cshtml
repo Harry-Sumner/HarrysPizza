@@ -12,64 +12,69 @@
 </head>
 
 <body>
-
+    <!-- This creates a div that stores an image banner with text -->
     <div class="image_banner">
-        <img src="~/images/menu_banner.png">
+        <img src="~/images/menu_banner.png" alt="Image of menu items on a table"> <!-- Caprinos Pizza (n.d.) -->
         <div class="banner_text">Our Menu</div>
     </div>
     <!-- Creates a div that is referenced in CSS in order to display an image banner -->
-
+    <!-- Code adapted from W3Schools(n.d.-a) -->
     <div id="btn_container">
         <button class="btn clicked" onclick="filterSelection('all')"> Show all</button>
         <button class="btn" onclick="filterSelection('Pizza')"> Pizza</button>
         <button class="btn" onclick="filterSelection('Side')"> Sides</button>
         <button class="btn" onclick="filterSelection('Dessert')"> Desserts</button>
-        <button class="btn" onclick="filterSelection('Drink')"> Drinks</button>
+        <button class="btn" onclick="filterSelection('Drink')"> Drinks</button> <!-- Container with buttons which calls function filterselection variable when clicked -->
+    <!-- End of code adapted -->
         <form method="post">
+            <label asp-for="Search">Search:</label>
             <input asp-for="Search" />
-            <button type="submit" asp-page-handler="Search">Search</button>
+            <button type="submit" asp-page-handler="Search">Search</button> <!-- Button that when clicked directs to page handler search and clear when clicked -->
             <button type="submit" asp-page-handler="Clear">Clear</button>
         </form>
     </div>
     
     <div class="menu">
         @foreach (var item in Model.Item)
-        {
+        { //iterate through items and display each item in the div class which is dictated by what menu the item belongs in, e.g. Desserts will be in dessert div
 
             <div class="item @Html.ValueFor(modelItem => item.Menu)">
                 <div class="content">
                     @{
                         try
                         {
-                            <img src="@string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(item.ImageData))" alt="@Html.DisplayFor(modelItem => item.ImageDescription)" style="width:25vw; height:18vw; max-height: 250px; max-width: 400px" />
-                        }
+                            <img src="@string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(item.ImageData))" alt="@Html.DisplayFor(modelItem => item.ImageDescription)" style="width:25vw; height:18vw; max-height: 250px; max-width: 400px"/>
+                        } //Try converting data inside sql database into an image, if there are issues then a thumbnail image is used instead
                         catch 
                         {
-                            <img class="img-thumb" src="~/images/empty.png" alt="No Image Provided" style="width:25vw; height:18vw; max-height: 250px; max-width: 425px" />
-                        }
+                            <img class="img-thumb" src="~/images/empty.png" alt="No Image Provided" style="width:25vw; height:18vw; max-height: 250px; max-width: 400px"/>
+                        } 
                     }
                     <br />
                     <br />
-                    <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+                    <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
                     <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                    <p style="color:seagreen">@Html.DisplayFor(modelItem => item.DietrySpecial)</p>
-                    <h4> £@Html.DisplayFor(modelItem => item.Price)</h4>
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                    <p style="color:darkgreen">@Html.DisplayFor(modelItem => item.DietrySpecial)</p>
+                    <h2> £@Html.DisplayFor(modelItem => item.Price)</h2>
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a><!-- Display HTML for price, description dietry requirements and link to details page -->
                     <br />
                     @if (this.User.Identity.IsAuthenticated)
-                    {
+                    { //only displays button if user is logged in to prevent page crashing
                         <form method="post">
                             <button type="submit" onclick="snackbarFunc()" asp-page-handler="Order" asp-route-itemID="@item.ID">Add to Order</button>
-                        </form>
+                        </form> //when submitted snackbarFunc is called and itemID is passed to page handler to process add to basket
                     }
                     
                 </div>
             </div>
         }
     </div>
+    <!-- Code adapted from GeeksforGeeks(2023) -->
     <div id="snackbar">Item added to order.</div>
+    <!-- End of code adapted -->
 
     <script>
+        //Code adapted from W3Schools(n.d.-a)
         filterSelection("all") //Calls the filter selection fuction with all parameter
         function filterSelection(c) {
             var x, i;
@@ -82,7 +87,7 @@
             }
         }
 
-        // Displey the filtered items
+        // Display the filtered items
         function AddClass(element, name) {
             var i, arr1, arr2;
             arr1 = element.className.split(" ");
@@ -117,5 +122,7 @@
                 this.className += " active";
             });
         }
+
+        // End of code adapted
     </script>  
 </body>

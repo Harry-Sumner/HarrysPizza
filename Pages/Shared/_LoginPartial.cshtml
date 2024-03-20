@@ -11,7 +11,7 @@
                 @{
                     var user = await UserManager.GetUserAsync(User);
                 }
-                Hello @(user.FirstName)!
+                Hello @(user.FirstName)! <!-- Greet user by there first name rather than username -->
             </a>
     </li>
     <li class="nav-item">
@@ -25,6 +25,9 @@ else
     //<li class="nav-item">
        // <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
     //</li>
+
+    //Removed register link as looks cleaner - user is still able register for an account using login page
+
     <li class="nav-item">
         <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>

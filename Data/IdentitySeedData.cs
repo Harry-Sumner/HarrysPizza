@@ -17,18 +17,18 @@ namespace HarrysPizza.Data
 
             if (await roleManager.FindByNameAsync(adminRole) == null)
             {
-                await roleManager.CreateAsync(new IdentityRole(adminRole));
+                await roleManager.CreateAsync(new IdentityRole(adminRole)); //If no admin role then a role would be created 
             }
 
             if (await roleManager.FindByNameAsync(customerRole) == null)
             {
-                await roleManager.CreateAsync(new IdentityRole(customerRole));
+                await roleManager.CreateAsync(new IdentityRole(customerRole)); //If no customer role then one will be created
 
             }
 
             if (await userManager.FindByNameAsync("admin@harryspizza.com") == null)
             {
-                var user = new HarrysPizzaUser
+                var user = new HarrysPizzaUser //If there is no admin user then one is created using the details below
                 {
                     UserName = "admin@harryspizza.com",
                     Email = "admin@harryspizza.com",
@@ -43,7 +43,7 @@ namespace HarrysPizza.Data
                     await userManager.AddToRoleAsync(user, adminRole);
                 }
             }
-            if (await userManager.FindByNameAsync("customer@harryspizza.com") == null)
+            if (await userManager.FindByNameAsync("customer@harryspizza.com") == null) //If there is no customer user then one is created using the details below
             {
                 var user = new HarrysPizzaUser
                 {

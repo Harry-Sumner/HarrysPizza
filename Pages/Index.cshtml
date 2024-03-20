@@ -5,46 +5,45 @@
 }
 
 <head>
-    <link rel='stylesheet' href="~/css/index.css">
-    <link rel='stylesheet' href="~/css/site.css">
+    <link rel='stylesheet' href="~/css/index.css"/>
+    <link rel='stylesheet' href="~/css/site.css"/>
     <script src ="~/js/site.js"></script>
 </head>
 
 <body>
-
+    <!-- This creates a div that stores an image banner with text -->
     <div class="image_banner">
-        <img src="~/images/home_banner.png">
-        
+        <img src="~/images/home_banner.jpg" alt="Image of cheesey pizza"> <!-- TheDailyMeal (n.d.) -->
         <div class="banner_text">Harry's Pizza - the best pizza in Chester</div>
     </div>
     <!-- Creates a div that is referenced in CSS in order to display an image banner -->
-
+    <!-- Code adapted from W3Schools(n.d.-c) -->
     <div class="tab">
         <button class="tablinks" onclick="openTab('Collect')" id="defaultTab">Collect</button>
         <button class="tablinks" onclick="openTab('Deliver')">Deliver</button>
-    </div>
+    </div> <!-- sets collect as default tab and allows toggle between content -->
 
     <div id="Collect" class="tabcontent">
-        <h4>Collect</h4>
+        <h1>Collect</h1>
         <p>To place an order for collection, you will first need to login/register. Then visit our menu page and start adding
             our delicious food to your order. Finally head to the checkout page to place your order. See you soon!</p>
     </div>
 
     <div id="Deliver" class="tabcontent">
-        <h4>Deliver</h4>
+        <h1>Deliver</h1>
         <p>For delivery straight to your door, order via one of our delivery partners.</p>
         <a href="https://www.justeat.co.uk">
             <img src="~/images/justeat.jpeg" alt="Just Eat Logo"
-                 style="width: 9vw;height: 9vw"> <!-- Just Eat (n.d). Just Eat Logo (Photograph) Indeed UK. https://uk.indeed.com/cmp/Just-Eat/jobs -->
+                 style="width: 9vw;height: 9vw"> <!-- Just Eat (n.d) -->
         </a>
         <a href="https://www.ubereats.com">
-            <img src="~/images/ubereats.jpeg" alt="Uber EatsLogo"
-                 style="width: 9vw;height: 9vw">
-            <!-- Uber (n.d). Uber Eats Logo (Photograph). 5 Spot Restaurant. https://5spotrestaurant.com/delivery/uber-eats-logo-1/ -->
+            <img src="~/images/ubereats.jpeg" alt="Uber Eats Logo"
+                 style="width: 9vw;height: 9vw"> <!-- Uber (n.d) -->
         </a>
         <a href = "https://www.deliveroo.co.uk">
             <img src="~/images/deliveroo.png" alt="Deliveroo Logo"
-            style = "width: 9vw;height: 9vw">
+                 style="width: 9vw;height: 9vw"> <!-- Deliveroo (n.d) -->
         </a>
     </div>
+    <!-- End of code adapted -->
 </body>

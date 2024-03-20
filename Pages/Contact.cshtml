@@ -5,18 +5,19 @@
 }
 <head>
     <link rel='stylesheet' href="~/css/contact.css">
-    <link rel='stylesheet' href="~/css/site.css">
-
+    <link rel='stylesheet' href="~/css/site.css" />
 </head>
 <body>
+    <!-- This creates a div that stores an image banner with text -->
     <div class="image_banner">
-        <img src="~/images/contact.jpg">
-        <div class="banner_text">Contact Us</div>
+        <img src="~/images/contact.jpg" alt="Image of young woman with brown hair texting on her phone"> <!-- Qualtrics (n.d.) -->
+        <div class="banner_text">Contact Us</div> 
     </div>
-    <div class="contact_container">
+    <div class="contact_container"> <!-- Create container for content -->
         <div class="form_container">
-            <h4>Have a question? Get in touch using the form below.</h4>
-            <div class = "form">
+            <h>Have a question? Get in touch using the form below.</h>
+            <!-- Code adapted from W3Schools(n.d.-b) -->
+            <div class = "form"> <!-- Creates a HTML form which displays a message when response is submitted -->
                 <form onsubmit="alert('Your message has been sent. We aim to respond within 2 - 3 days.')">
                     <label for="fname">First Name:</label><br />
                     <input type="text" id="fname" name="fname"><br />
@@ -31,13 +32,15 @@
                     <input type="submit">
                 </form>
             </div>
-           
+           <!-- End of code adapted -->
         </div>
         <div class="right">
-            <h4>Live local? Come and pay us a visit, we would love to chat!</h4>
-            <div class="google-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d149.41057354808257!2d-2.891411184626113!3d53.189707768333555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487add497307130b%3A0xd396333e4ffbe7a9!2s29%20Bridge%20St%2C%20Chester%20CH1%201NG!5e0!3m2!1sen!2suk!4v1709759664446!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen = "" loading="lazy"</iframe>
+            <h1>Live local? Come and pay us a visit, we would love to chat!</h1>
+            <!-- Code adapted from Digital Inspiration(2022) -->
+            <div class="google-map"> <!-- Embeded map using iframe, this is responsive using css -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d149.41057354808257!2d-2.891411184626113!3d53.189707768333555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487add497307130b%3A0xd396333e4ffbe7a9!2s29%20Bridge%20St%2C%20Chester%20CH1%201NG!5e0!3m2!1sen!2suk!4v1709759664446!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen = "" loading="lazy"></iframe>
             </div>
+            <!-- End of code adapted -->
         </div>
     </div>
 </body>

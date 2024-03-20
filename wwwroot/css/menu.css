@@ -6,7 +6,7 @@
 }
 
 
-
+/* Code adapted from W3Schools(n.d.-a) */
 .menu {
     margin: 8px -16px;
 }
@@ -68,3 +68,5 @@
         background-color: darkgrey;
         color: white;
     }
+
+/* End of code adapted */

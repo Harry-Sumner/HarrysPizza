@@ -19,7 +19,7 @@ namespace HarrysPizza.Data
         }
 
         
-
+        //Declares DbSet to allow CRUD operations
         public DbSet<HarrysPizzaUser> HarrysPizzaUser { get; set; }
 
         public DbSet<Item> Items { get; set; } = default!;
@@ -40,7 +40,7 @@ namespace HarrysPizza.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<HarrysPizzaUser>().Ignore(e => e.Name);
             modelBuilder.Entity<Item>().ToTable("Menu");
-
+            //Sets primary compound keys for tables BasketItem and OrderItem
             modelBuilder.Entity<BasketItem>().HasKey(t => new {t.ItemID, t.BasketID});
             modelBuilder.Entity<OrderItem>().HasKey(t => new {t.OrderNo, t.ItemID});
         }

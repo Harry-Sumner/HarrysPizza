@@ -18,7 +18,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/images/pizza_logo.jpg" width="70vw" height="70vw"></a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/images/pizza_logo.jpg" alt="Harry's Pizza Logo - link to home page" width="70vw" height="70vw"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,8 +42,6 @@
                         }
                         
                     </ul>
-
-                    
                     <partial name = "_LoginPartial"/>
                 </div>
             </div>
@@ -57,7 +55,10 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Harry's Pizza - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2024 - Harry's Pizza - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <a href="https://validator.w3.org/#validate_by_uri">Validate HTML</a>
+            <a href="https://jigsaw.w3.org/css-validator/">Validate CSS</a>
+
             @if (User.IsInRole("Admin"))
             {
                 <a asp-area="" asp-page="/Admin/AdminIndex">Admin</a>
